@@ -120,9 +120,9 @@ def create_browser_settings_tab(webui_manager: WebuiManager):
 
         with gr.Row():
             save_agent_history_path = gr.Textbox(
-                label="Agent History Save Path",
+                label="Unibot History Save Path",
                 value="./tmp/agent_history",
-                info="Specify the directory where agent history should be saved.",
+                info="Specify the directory where Unibot history should be saved.",
                 interactive=True,
             )
             save_download_path = gr.Textbox(

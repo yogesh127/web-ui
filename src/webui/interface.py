@@ -19,7 +19,7 @@ theme_map = {
 }
 
 
-def create_ui(theme_name="Ocean"):
+def create_ui(theme_name="Glass"):
     css = """
     .gradio-container {
         width: 70vw !important; 
@@ -42,54 +42,45 @@ def create_ui(theme_name="Ocean"):
     }
     """
 
-    # dark mode in default
-    js_func = """
-    function refresh() {
-        const url = new URL(window.location);
-
-        if (url.searchParams.get('__theme') !== 'dark') {
-            url.searchParams.set('__theme', 'dark');
-            window.location.href = url.href;
-        }
-    }
-    """
+    # Removed JS that forces dark mode
 
     ui_manager = WebuiManager()
 
     with gr.Blocks(
-            title="Browser Use WebUI", theme=theme_map[theme_name], css=css, js=js_func,
+            title="Unibot", theme=theme_map[theme_name], css=css,
     ) as demo:
         with gr.Row():
             gr.Markdown(
                 """
-                # 🌐 Browser Use WebUI
-                ### Control your browser with AI assistance
+                # 🤖  Unibot
+                ### Automate your commerce flow with intelligent AI guidance.
                 """,
                 elem_classes=["header-text"],
             )
 
         with gr.Tabs() as tabs:
-            with gr.TabItem("⚙️ Agent Settings"):
-                create_agent_settings_tab(ui_manager)
 
-            with gr.TabItem("🌐 Browser Settings"):
-                create_browser_settings_tab(ui_manager)
-
-            with gr.TabItem("🤖 Run Agent"):
+            with gr.TabItem("🤖 Unibot"):
                 create_browser_use_agent_tab(ui_manager)
 
-            with gr.TabItem("🎁 Agent Marketplace"):
-                gr.Markdown(
-                    """
-                    ### Agents built on Browser-Use
-                    """,
-                    elem_classes=["tab-header-text"],
-                )
-                with gr.Tabs():
-                    with gr.TabItem("Deep Research"):
-                        create_deep_research_agent_tab(ui_manager)
+            with gr.TabItem("⚙️ Unibot Settings"):
+                create_agent_settings_tab(ui_manager)
 
-            with gr.TabItem("📁 Load & Save Config"):
-                create_load_save_config_tab(ui_manager)
+            #with gr.TabItem("🌐 Browser Settings"):
+            #   create_browser_settings_tab(ui_manager)
+
+            #with gr.TabItem("🎁 Agent Marketplace"):
+            #   gr.Markdown(
+            #       """
+            #       ### Agents built on Browser-Use
+            #       """,
+            #       elem_classes=["tab-header-text"],
+            #   )
+            #   with gr.Tabs():
+            #       with gr.TabItem("Deep Research"):
+            #           create_deep_research_agent_tab(ui_manager)
+
+            #with gr.TabItem("📁 Load & Save Config"):
+            #    create_load_save_config_tab(ui_manager)
 
     return demo

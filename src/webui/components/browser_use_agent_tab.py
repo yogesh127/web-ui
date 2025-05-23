@@ -984,13 +984,13 @@ def create_browser_use_agent_tab(webui_manager: WebuiManager):
         chatbot = gr.Chatbot(
             lambda: webui_manager.bu_chat_history,  # Load history dynamically
             elem_id="browser_use_chatbot",
-            label="Agent Interaction",
+            label="Unibot Interaction",
             type="messages",
             height=600,
             show_copy_button=True,
         )
         user_input = gr.Textbox(
-            label="Your Task or Response",
+            label="Response",
             placeholder="Enter your task here or provide assistance when asked.",
             lines=3,
             interactive=True,
